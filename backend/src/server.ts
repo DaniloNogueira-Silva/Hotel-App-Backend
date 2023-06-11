@@ -1,9 +1,11 @@
 import Fastify from 'fastify'
-import dotenv from 'dotenv'
+import cors from "@fastify/cors"
 
-dotenv.config()
-const app = Fastify()
+const server = Fastify()
+server.register(cors)
 
-app.listen({
-    port: 4421,
+server.listen({port: 4421
+})
+.then( () => {
+    console.log('HTTP Server running')
 })
