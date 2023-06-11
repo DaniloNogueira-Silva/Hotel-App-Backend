@@ -9,3 +9,115 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Hotel {
+  id       Int      @id @default(autoincrement())
+  name     String
+  address  String
+  phone    String
+  stars    Float
+  checkin  DateTime
+  checkout DateTime
+
+  //relations
+  room_type RoomType[]
+  room      Room[]
+  booking   Booking[]
+  client    Client[]
+  employee  Employee[]
+  pub       Pub[]
+  user      User[]
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String
+  password String
+
+
+  employee Employee?
+  //user faz parte de um hotel
+  hotel       Hotel    @relation(fields: [id_hotel], references: [id])
+  id_hotel    Int
+}
+
+model RoomType {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  capactity   Int
+  price       Float
+
+  //RoomType tem vários rooms
+  rooms Room[]
+
+  //Pertence a um hotel
+  hotel    Hotel @relation(fields: [id_hotel], references: [id])
+  id_hotel Int
+}
+
+model Room {
+  id     Int    @id @default(autoincrement())
+  number Int
+  status String
+
+  //Um room pode ter várias reservas
+  bookings Booking[]
+
+  //Um room pertence um roomtype e um hotel
+  room_type    RoomType @relation(fields: [id_room_type], references: [id])
+  id_room_type Int
+  hotel        Hotel    @relation(fields: [id_hotel], references: [id])
+  id_hotel     Int
+}
+
+model Booking {
+  id       Int      @id @default(autoincrement())
+  checkin  DateTime
+  checkout DateTime
+
+  //um  booking pertence a um cliente, hotel e quarto
+  room      Room   @relation(fields: [id_room], references: [id])
+  id_room   Int
+  hotel     Hotel  @relation(fields: [id_hotel], references: [id])
+  id_hotel  Int
+  client    Client @relation(fields: [id_client], references: [id])
+  id_client Int
+}
+
+model Client {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+  cpf   String
+  phone String
+
+  //Um cliente pertence a um hotel
+  hotel    Hotel     @relation(fields: [id_hotel], references: [id])
+  id_hotel Int
+  Bookings  Booking[]
+}
+
+model Pub {
+  id Int @id @default(autoincrement())
+
+  //Um hotel possui vários pub
+  hotel    Hotel @relation(fields: [id_hotel], references: [id])
+  id_hotel Int
+}
+
+model Employee {
+  id          Int      @id @default(autoincrement())
+  name        String
+  date_birth  DateTime
+  date_hiring DateTime
+  salary      Float
+  Role        String
+
+  // um funcionário pode ser um user
+  user User? @relation(fields: [id_user], references: [id])
+  id_user Int? @unique
+  //Um funcionário pertence a um hotel
+  hotel    Hotel  @relation(fields: [id_hotel], references: [id])
+  id_hotel Int
+}
