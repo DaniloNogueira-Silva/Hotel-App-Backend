@@ -100,7 +100,7 @@ model Client {
 
 model Pub {
   id Int @id @default(autoincrement())
-
+  name String
   //Um hotel possui vários pub
   hotel    Hotel @relation(fields: [id_hotel], references: [id])
   id_hotel Int
@@ -112,7 +112,7 @@ model Employee {
   date_birth  DateTime
   date_hiring DateTime
   salary      Float
-  Role        String
+  role        String
 
   // um funcionário pode ser um user
   user User? @relation(fields: [id_user], references: [id])
