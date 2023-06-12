@@ -45,7 +45,7 @@ model RoomType {
   id          Int    @id @default(autoincrement())
   name        String
   description String
-  capactity   Int
+  capacity   Int
   price       Float
 
   //RoomType tem vários rooms
