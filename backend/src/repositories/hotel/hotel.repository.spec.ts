@@ -17,10 +17,10 @@ describe("HotelRepository", () => {
     await prisma.$disconnect();
   });
 
-  // Após cada teste, exclui todos os hotéis do banco de dados
-  // afterEach(async () => {
-  //   await prisma.hotel.deleteMany();
-  // });
+  Após cada teste, exclui todos os hotéis do banco de dados
+  afterEach(async () => {
+    await prisma.hotel.deleteMany();
+  });
 
   test("findAll should return an array of hotels", async () => {
     // Crie alguns hotéis para testar

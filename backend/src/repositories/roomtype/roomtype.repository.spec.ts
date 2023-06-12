@@ -14,9 +14,9 @@ describe("RoomTypeRepository", () => {
     await prisma.$disconnect();
   });
 
-  // afterEach(async () => {
-  //   await prisma.roomType.deleteMany();
-  // });
+  afterEach(async () => {
+    await prisma.roomType.deleteMany();
+  });
 
   test("findAll should return an array of room types for a given hotel id", async () => {
     const hotelId = 1;
