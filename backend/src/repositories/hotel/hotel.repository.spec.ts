@@ -17,7 +17,7 @@ describe("HotelRepository", () => {
     await prisma.$disconnect();
   });
 
-  Após cada teste, exclui todos os hotéis do banco de dados
+  //Após cada teste, exclui todos os hotéis do banco de dados
   afterEach(async () => {
     await prisma.hotel.deleteMany();
   });
