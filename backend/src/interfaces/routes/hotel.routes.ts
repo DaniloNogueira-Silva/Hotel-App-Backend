@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { HotelController } from '../../controllers/hotel.controller';
-import { HotelRepository } from '../../../repositories/hotel/hotel.repository';
+import { HotelController } from '../controllers/hotel.controller';
+import { HotelRepository } from '../../repositories/hotel/hotel.repository';
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
 
 const prisma = new PrismaClient();

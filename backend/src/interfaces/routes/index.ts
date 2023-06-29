@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import hotelRouter from '../routes/hotel/hotel.routes'
+import hotelRouter from './hotel.routes'
 import fastify from 'fastify';
 import fastifyCors from '@fastify/cors';
 

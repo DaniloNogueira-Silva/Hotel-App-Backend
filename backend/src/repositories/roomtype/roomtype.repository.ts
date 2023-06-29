@@ -6,7 +6,7 @@ export class RoomTypeRepository {
 
     async findAll(id_hotel: number): Promise<RoomType[]> {
         return prisma.roomType.findMany({
-            where: {id_hotel}
+            where: {id_hotel: id_hotel}
         });
     }
 
